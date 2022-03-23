@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+.App {
+  font-family: 'Jua', sans-serif;
+  font-family: 'Nanum Myeongjo', serif;
+}
+
+body {
+  background: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Nanum Myeongjo', serif;
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 650px) {
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background: rgba(153, 0, 254, 0.07);
+  box-shadow: -1px 1px 84px 20px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: -1px 1px 84px 20px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: -1px 1px 84px 20px rgba(0, 0, 0, 0.33);
+}
+
+.App {
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
