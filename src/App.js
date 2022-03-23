@@ -16,7 +16,7 @@ function App() {
           <Route path="/new" element={<New />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/diary" element={<Diary />} />
-          <Route path="/diary:id" element={<Diary />} />
+          <Route path="/diary/:id" element={<Diary />} />
         </Routes>
         <RouterTest />
       </div>
