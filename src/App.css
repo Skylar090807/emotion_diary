@@ -68,3 +68,35 @@ body {
   background: #333333;
   color: #fff;
 }
+
+/* Header 컴포넌트 */
+header {
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: 'Jua', sans-serif;
+}

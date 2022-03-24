@@ -5,11 +5,17 @@ import New from './pages/New'
 import Edit from './pages/Edit'
 import Diary from './pages/Diary'
 import Button from './components/Button'
+import Header from './components/Header'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Header
+          leftChild={<Button text={'왼쪽'} onClick={() => alert('왼쪽 버튼 클릭')} />}
+          headText={'Header'}
+          rightChild={<Button text={'오른쪽'} onClick={() => alert('오른쪽 버튼 클릭')} />}
+        />
         <h2>App.js</h2>
         <Button
           text={'버튼'}
