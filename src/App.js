@@ -18,6 +18,19 @@ function App() {
           }}
           type={'positive'}
         />
+        <Button
+          text={'버튼'}
+          onClick={() => {
+            alert('버튼 생성 성공!')
+          }}
+          type={'negative'}
+        />
+        <Button
+          text={'버튼'}
+          onClick={() => {
+            alert('버튼 생성 성공!')
+          }}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
