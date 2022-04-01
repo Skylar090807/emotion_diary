@@ -39,8 +39,42 @@ export const DiaryStateContext = createContext()
 
 export const DiaryDispatchContext = createContext()
 
+const dummyData = [
+  {
+    id: 1,
+    emotion: 1,
+    content: 'Emotion Diary 01',
+    date: 1648799995447,
+  },
+  {
+    id: 2,
+    emotion: 2,
+    content: 'Emotion Diary 02',
+    date: 1648799995448,
+  },
+  {
+    id: 3,
+    emotion: 3,
+    content: 'Emotion Diary 03',
+    date: 1648799995449,
+  },
+  {
+    id: 4,
+    emotion: 4,
+    content: 'Emotion Diary 04',
+    date: 1648799995450,
+  },
+  {
+    id: 5,
+    emotion: 5,
+    content: 'Emotion Diary 05',
+    date: 1648799995451,
+  },
+]
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, [])
+  console.log(new Date().getTime())
+  const [data, dispatch] = useReducer(reducer, dummyData)
 
   const dataId = useRef(0)
 

@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from '../components/Header'
 import Button from '../components/Button'
+import { DiaryStateContext } from '../App'
 
 const Home = () => {
+  //useContext 사용해 DiaryStateContext.Provider에서 value로 공급한 data를 diaryList에 대입.
+  const diaryList = useContext(DiaryStateContext)
+
   const [curDate, setCurDate] = useState(new Date())
   console.log(curDate)
 
