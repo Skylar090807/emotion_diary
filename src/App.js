@@ -40,6 +40,7 @@ export const DiaryStateContext = createContext()
 export const DiaryDispatchContext = createContext()
 
 const dummyData = [
+  //date = 4월 1일 기준
   {
     id: 1,
     emotion: 1,
