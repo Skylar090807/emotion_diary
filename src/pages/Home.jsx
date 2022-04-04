@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import { DiaryStateContext } from '../App'
 import { useEffect } from 'react'
+import DiaryList from '../components/DiaryList'
 
 const Home = () => {
   //useContext 사용해 DiaryStateContext.Provider에서 value로 공급한 data를 diaryList에 대입.
@@ -52,6 +53,7 @@ const Home = () => {
         leftChild={<Button text={'<'} onClick={decreseMonth} />}
         rightChild={<Button text={'>'} onClick={increaseMonth} />}
       />
+      <DiaryList diaryList={data} />
     </div>
   )
 }
