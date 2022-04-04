@@ -10,7 +10,15 @@ const ControlMenu = ({ value, onChange, optionList }) => {
   //value prop: ControlMenu가 렌더링 하는 select가 어떤 것을 선택하고 있는지 알려주는 역할.
   //onChange prop: select가 변경되었을 때 바꿀 기능을 하는 함수.
   //optionList prop: select 태그 안의 options.
-  return <select></select>
+  return (
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
+      {optionList.map((it, idx) => (
+        <option key={idx} value={it.value}>
+          {it.name}
+        </option>
+      ))}
+    </select>
+  )
 }
 
 const DiaryList = ({ diaryList }) => {
