@@ -128,3 +128,37 @@ header button {
   cursor: pointer;
   font-size: 18px;
 }
+
+/* DiaryItem 컴포넌트 */
+.DiaryItem {
+  padding: 15px 0;
+  border-bottom: 1px solid RGBA(149, 68, 211, 0.2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryItem .emotion_img_wrap {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  background: RGBA(149, 68, 211, 0.33);
+}
+
+.DiaryItem .info_wrap {
+  cursor: pointer;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.DiaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_preview {
+  font-size: 18px;
+}
