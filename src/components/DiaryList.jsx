@@ -21,17 +21,25 @@ const ControlMenu = ({ value, onChange, optionList }) => {
   )
 }
 
+//diaryList prop은 Home.jsx에서 useContext로 받아 온 data를 대입해준 것.
 const DiaryList = ({ diaryList }) => {
   //정렬 기준이 되는 state
   const [sortType, setSortType] = useState('latest')
 
   //ControlMenu option 선택 시 해당 일기 보여주는 기능 구현.
+
+  //diaryList 깊은 복사!
   //diaryList.sort()를 사용하면 기존 배열 자체가 변경되기 때문에
-  // 깊은 복사를 한 후 JSON.parse(JSON.stringify())함수를 사용해 데이터를 붙여 넣어 준다.
+  // 깊은 복사를 한 후 JSON.parse(JSON.stringify())함수를 사용해 데이터를 붙여 넣어 주고 copyList에 대입한다.
+  console.log('diaryList', diaryList)
   const getProcessedDiaryList = () => {
-    const copyList = JSON.parse(JSON.stringify())
+    const copyStringify = JSON.stringify(diaryList)
+    const copyList = JSON.parse(JSON.stringify(diaryList))
+    console.log('copyStringify', copyStringify)
+    console.log('copyList :', copyList)
   }
 
+  getProcessedDiaryList()
   return (
     <div>
       {/* controlMenu의 value prop역할은 정렬기준이 되는 sortType을 변화시키는 select의 역할을 하기때문에 value에 sortType을 내려준다. */}
