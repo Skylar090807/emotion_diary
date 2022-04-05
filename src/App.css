@@ -162,3 +162,7 @@ header button {
 .DiaryItem .diary_content_preview {
   font-size: 18px;
 }
+
+.DiaryItem .btn_wrap {
+  min-width: 70px;
+}
