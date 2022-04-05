@@ -100,3 +100,31 @@ header .head_btn_right {
 header button {
   font-family: 'Jua', sans-serif;
 }
+
+/* DiaryList 컴포넌트 */
+.DiaryList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.DiaryList .menu_wrapper .right_col {
+  flex-grow: 1;
+}
+
+.DiaryList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+.DiaryList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background: RGBA(149, 68, 211, 0.1);
+  color: #333;
+  font-family: 'Jua', sans-serif;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
