@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from './Button'
 
 const sortOptionList = [
   { value: 'latest', name: '최신 일기' },
@@ -29,6 +31,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 
 //diaryList prop은 Home.jsx에서 useContext로 받아 온 data를 대입해준 것.
 const DiaryList = ({ diaryList }) => {
+  const navigate = useNavigate()
   //정렬 기준이 되는 state
   const [sortType, setSortType] = useState('latest')
   const [emotionFilter, setEmotionFilter] = useState('all')
@@ -69,6 +72,7 @@ const DiaryList = ({ diaryList }) => {
       {/* optionList prop의 역할은 어떤 일기인지 option을 보여주는 것이므로 일기 종류를 배열로 담고있는 sortOptionList를 내려준다. */}
       <ControlMenu value={sortType} onChange={setSortType} optionList={sortOptionList} />
       <ControlMenu value={emotionFilter} onChange={setEmotionFilter} optionList={emotionFilterOptionList} />
+      <Button type={'positive'} text={'새로운 일기'} onClick={() => navigate('/new')} />
       {getProcessedDiaryList().map((it) => (
         <div key={it.id}>
           {it.content}
