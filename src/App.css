@@ -166,3 +166,27 @@ header button {
 .DiaryItem .btn_wrap {
   min-width: 70px;
 }
+
+/* DiaryEditor 컴포넌트 */
+.DiaryEditor {
+}
+
+.DiaryEditor section {
+  margin-bottom: 40px;
+}
+
+.DiaryEditor h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.DiaryEditor .input_date {
+  border: none;
+  border-radius: 5px;
+  background: RGBA(149, 68, 211, 0.2);
+  padding: 10px 20px;
+
+  cursor: pointer;
+  font-family: 'Jua', sans-serif;
+  font-size: 18px;
+}
