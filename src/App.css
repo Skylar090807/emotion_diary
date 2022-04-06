@@ -201,12 +201,16 @@ header button {
 .EmotionItem {
   cursor: pointer;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: RGBA(149, 68, 211, 0.1);
+  transition: all 0.5s ease-in-out;
+}
+
+.EmotionItem:hover {
+  transform: scale(1.1);
 }
 
 .EmotionItem img {
@@ -217,4 +221,34 @@ header button {
 .EmotionItem span {
   font-size: 18px;
   font-weight: bold;
+  font-family: 'Jua', sans-serif;
+}
+
+.EmotionItem_off {
+  background: RGBA(149, 68, 211, 0.1);
+}
+
+.EmotionItem_on_1 {
+  background: #64c963;
+  color: #fff;
+}
+
+.EmotionItem_on_2 {
+  background: #9dd772;
+  color: #fff;
+}
+
+.EmotionItem_on_3 {
+  background: #fdce17;
+  color: #fff;
+}
+
+.EmotionItem_on_4 {
+  background: #fd8446;
+  color: #fff;
+}
+
+.EmotionItem_on_5 {
+  background: #fd565e;
+  color: #fff;
 }
