@@ -144,7 +144,7 @@ header button {
   border-radius: 5px;
   display: flex;
   justify-content: center;
-  background: RGBA(149, 68, 211, 0.33);
+  background: RGBA(149, 68, 211, 0.03);
 }
 
 .DiaryItem .info_wrap {
@@ -197,11 +197,24 @@ header button {
   gap: 2%;
 }
 
+.DiaryEditor textarea {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 18px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical; /*세로만 resize 허용.*/
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  background: RGBA(149, 68, 211, 0.03);
+}
+
 /* EmotionItem 컴포넌트 */
 .EmotionItem {
   cursor: pointer;
   border-radius: 5px;
-  padding: 20px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -225,7 +238,7 @@ header button {
 }
 
 .EmotionItem_off {
-  background: RGBA(149, 68, 211, 0.1);
+  background: RGBA(149, 68, 211, 0.05);
 }
 
 .EmotionItem_on_1 {
