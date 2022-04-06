@@ -190,3 +190,31 @@ header button {
   font-family: 'Jua', sans-serif;
   font-size: 18px;
 }
+
+.DiaryEditor .emotion_list_wrap {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+}
+
+/* EmotionItem 컴포넌트 */
+.EmotionItem {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: RGBA(149, 68, 211, 0.1);
+}
+
+.EmotionItem img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.EmotionItem span {
+  font-size: 18px;
+  font-weight: bold;
+}

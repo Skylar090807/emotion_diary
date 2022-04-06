@@ -21,7 +21,7 @@ const emotionList = [
   {
     emotion_id: 3,
     emotion_img: process.env.PUBLIC_URL + `assets/emotion3.png`,
-    emotion_descript: '나쁘지 않아',
+    emotion_descript: '그냥 그래',
   },
   {
     emotion_id: 4,
