@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from './Button'
 import EmotionItem from './EmotionItem'
@@ -55,8 +56,11 @@ const DiaryEditor = () => {
 
   const navigate = useNavigate()
 
+  const contentRef = useRef()
+
   const [date, setDate] = useState(getStringDate(new Date()))
   const [emotion, setEmotion] = useState(3)
+  const [content, setContent] = useState()
 
   const pagebackHandler = () => {
     navigate(-1)
@@ -65,18 +69,23 @@ const DiaryEditor = () => {
   const emotionClickHandler = (emotion) => {
     setEmotion(emotion)
   }
+
+  const onChangeHandler = (event) => {
+    setContent(event.target.value)
+  }
+
   return (
     <div className="DiaryEditor">
       <Header headText={'새로운 일기'} leftChild={<Button text={'< 뒤로가기'} onClick={pagebackHandler} />} />
       <div>
         <section>
-          <h4>오늘의 날짜 선택</h4>
+          <h4>날짜 선택</h4>
           <div className="input_box">
             <input className="input_date" value={date} type="date" onChange={(e) => setDate(e.target.value)} />
           </div>
         </section>
         <section>
-          <h4>오늘 나의 감정</h4>
+          <h4>나의 감정</h4>
           <div className="input_box emotion_list_wrap">
             {emotionList.map((it) => (
               <EmotionItem //
@@ -86,6 +95,17 @@ const DiaryEditor = () => {
                 isSelected={it.emotion_id === emotion}
               />
             ))}
+          </div>
+        </section>
+        <section>
+          <h4>오늘의 일기</h4>
+          <div className="input_box text_wrapper">
+            <textarea //
+              ref={contentRef}
+              value={content}
+              onChange={onChangeHandler}
+              placeholder="어떤 하루를 보냈나요?"
+            />
           </div>
         </section>
       </div>
