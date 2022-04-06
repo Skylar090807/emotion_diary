@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DiaryDispatchContext } from './../App'
 import Button from './Button'
 import EmotionItem from './EmotionItem'
 import Header from './Header'
@@ -36,24 +36,23 @@ const emotionList = [
   },
 ]
 
-// '오늘의 날짜 선택' 캘린더에서 오늘의 날짜가 default로 떠있게 하기 위해서는 new Date()객체를 함수
-// 안에서 .toISOString().slice(0, 10)로 가공 해준 후 useState() 초기값으로 할당해줘야 한다.
 const getStringDate = (date) => {
-  return date.toISOString().slice(0, 10)
-  //toISOString은 new Date()객체의 메서드.
-  //toISOString() 출력
-  // 2022-04-06T02:07:07.202Z
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
 
-  //date.toISOString().slice(0, 10) 출력
-  // 2022-04-06
+  if (month < 10) {
+    month = `0${month}`
+  }
+
+  if (day < 10) {
+    day = `0${day}`
+  }
+
+  return `${year}-${month}-${day}`
 }
 
 const DiaryEditor = () => {
-  //getStringDate 출력 확인
-  console.log(getStringDate(new Date()))
-  //getStringDate에 new Date()를 할당한 것과 아래는 동일하다.
-  console.log(new Date().toISOString().slice(0, 10))
-
   const navigate = useNavigate()
 
   const contentRef = useRef()
@@ -61,6 +60,8 @@ const DiaryEditor = () => {
   const [date, setDate] = useState(getStringDate(new Date()))
   const [emotion, setEmotion] = useState(3)
   const [content, setContent] = useState()
+
+  const { onCreate } = useContext(DiaryDispatchContext)
 
   const pagebackHandler = () => {
     navigate(-1)
@@ -74,9 +75,21 @@ const DiaryEditor = () => {
     setContent(event.target.value)
   }
 
+  const submitHandler = () => {
+    if (!content) {
+      contentRef.current.focus()
+    } else {
+      onCreate(date, content, emotion)
+      navigate('/', { replace: true })
+    }
+  }
+
   return (
     <div className="DiaryEditor">
-      <Header headText={'새로운 일기'} leftChild={<Button text={'< 뒤로가기'} onClick={pagebackHandler} />} />
+      <Header //
+        headText={'새로운 일기'}
+        leftChild={<Button text={'< 뒤로가기'} onClick={pagebackHandler} />}
+      />
       <div>
         <section>
           <h4>날짜 선택</h4>
@@ -106,6 +119,12 @@ const DiaryEditor = () => {
               onChange={onChangeHandler}
               placeholder="어떤 하루를 보냈나요?"
             />
+          </div>
+        </section>
+        <section>
+          <div className="control_button_wrap">
+            <Button text={'작성 취소'} type={'negative'} onClick={pagebackHandler} />
+            <Button text={'일기 저장'} type={'positive'} onClick={submitHandler} />
           </div>
         </section>
       </div>

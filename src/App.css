@@ -210,6 +210,12 @@ header button {
   background: RGBA(149, 68, 211, 0.03);
 }
 
+.DiaryEditor .control_button_wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* EmotionItem 컴포넌트 */
 .EmotionItem {
   cursor: pointer;

@@ -111,7 +111,7 @@ function App() {
 
   return (
     <DiaryStateContext.Provider value={data}>
-      <DiaryDispatchContext.Provider value={(onCreate, onRemove, onEdit)}>
+      <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
         <BrowserRouter>
           <div className="App">
             <Routes>
