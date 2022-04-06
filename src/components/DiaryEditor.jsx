@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from './Button'
+import EmotionItem from './EmotionItem'
 import Header from './Header'
 
 const env = process.env
@@ -73,7 +74,7 @@ const DiaryEditor = () => {
           <h4>오늘 나의 감정</h4>
           <div className="input_box emotion_list_wrap">
             {emotionList.map((it) => (
-              <div key={it.emotion_id}>{it.emotion_descript}</div>
+              <EmotionItem key={it.emotion_id} {...it} />
             ))}
           </div>
         </section>
