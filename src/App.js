@@ -1,4 +1,4 @@
-import { createContext, useReducer, useRef } from 'react'
+import { createContext, useEffect, useReducer, useRef } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
@@ -32,6 +32,8 @@ const reducer = (state, action) => {
     default:
       return state
   }
+
+  localStorage.setItem('diary', JSON.stringify(newState))
   return newState
 }
 
@@ -40,10 +42,23 @@ export const DiaryStateContext = createContext()
 export const DiaryDispatchContext = createContext()
 
 function App() {
-  console.log(new Date().getTime())
+  // console.log("밀리세컨드 확인",new Date().getTime())
   const [data, dispatch] = useReducer(reducer, [])
 
-  const dataId = useRef(6)
+  useEffect(() => {
+    const localStorageData = localStorage.getItem('diary')
+    if (localStorageData) {
+      const diaryList = JSON.parse(localStorageData).sort((a, b) => Number(b.id) - Number(a.id))
+      dataId.current = Number(diaryList[0].id) + 1
+
+      console.log('localStorage diaryList', diaryList)
+      console.log('dataId', dataId)
+
+      dispatch({ type: 'INIT', data: diaryList })
+    }
+  }, [])
+
+  const dataId = useRef(0)
 
   //useReducer dispatch 함수 구현
   const onCreate = (date, content, emotion) => {

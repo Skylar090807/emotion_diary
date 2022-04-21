@@ -22,7 +22,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [emotion, setEmotion] = useState(3)
   const [content, setContent] = useState()
 
-  const { onCreate, onEdit } = useContext(DiaryDispatchContext)
+  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext)
 
   const pagebackHandler = () => {
     navigate(-1)
@@ -56,6 +56,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
     navigate('/', { replace: true })
   }
 
+  const removeHandler = () => {
+    if (window.confirm('확인을 누르면 일기가 삭제됩니다.')) {
+      onRemove(originData.id)
+      navigate('/', { replace: true })
+    }
+  }
+
   //page/Editor 컴포넌트에서 넘겨받은 props처리
   useEffect(() => {
     if (isEdit) {
@@ -65,11 +72,15 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData])
 
+  console.log('origindata', originData)
+
   return (
     <div className="DiaryEditor">
       <Header //
         headText={isEdit ? '일기 수정하기' : '새로운 일기'}
         leftChild={<Button text={'< 뒤로가기'} onClick={pagebackHandler} />}
+        // rightChild={isEdit ? <Button text={'삭제하기'} onClick={() => {}} /> : ''}
+        rightChild={isEdit && <Button text={'삭제하기'} type={'negative'} onClick={removeHandler} />}
       />
       <div>
         <section>
