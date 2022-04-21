@@ -271,3 +271,72 @@ header button {
   background: #fd565e;
   color: #fff;
 }
+
+/* Diary 일기 상세페이지 */
+.DiaryPage {
+}
+
+.DiaryPage section {
+  width: 100%;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.DiaryPage h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.DiaryPage .diary_img_wrapper {
+  background: #ececec;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.DiaryPage .diary_img_wrapper_1 {
+  background: #64c963;
+}
+.DiaryPage .diary_img_wrapper_2 {
+  background: #9dd772;
+}
+.DiaryPage .diary_img_wrapper_3 {
+  background: #fdce17;
+}
+.DiaryPage .diary_img_wrapper_4 {
+  background: #fd8446;
+}
+.DiaryPage .diary_img_wrapper_5 {
+  background: #fd565e;
+}
+
+.DiaryPage .emotion_descript {
+  color: #fff;
+  font-size: 1.5rem;
+  font-family: 'Jua', sans-serif;
+}
+
+.DiaryPage .diary_content_wrapper {
+  width: 100%;
+  background: rgba(238, 207, 252, 0.1);
+
+  border-radius: 10px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.DiaryPage .diary_content {
+  padding: 20px;
+  text-align: left;
+  font-weight: 400;
+  line-height: 2;
+  font-size: 1.2em;
+}

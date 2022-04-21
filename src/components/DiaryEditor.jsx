@@ -1,67 +1,28 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DiaryDispatchContext } from './../App'
 import Button from './Button'
 import EmotionItem from './EmotionItem'
 import Header from './Header'
+import { getStringDate } from '../util/date'
+import { emotionList } from '../util/emotionList'
 
 const env = process.env
 env.PUBLIC_URL = env.PUBLIC_URL || ''
 
-const emotionList = [
-  {
-    emotion_id: 1,
-    emotion_img: process.env.PUBLIC_URL + `assets/emotion1.png`,
-    emotion_descript: '행복해',
-  },
-  {
-    emotion_id: 2,
-    emotion_img: process.env.PUBLIC_URL + `assets/emotion2.png`,
-    emotion_descript: '즐거워',
-  },
-  {
-    emotion_id: 3,
-    emotion_img: process.env.PUBLIC_URL + `assets/emotion3.png`,
-    emotion_descript: '그냥 그래',
-  },
-  {
-    emotion_id: 4,
-    emotion_img: process.env.PUBLIC_URL + `assets/emotion4.png`,
-    emotion_descript: '짜증나',
-  },
-  {
-    emotion_id: 5,
-    emotion_img: process.env.PUBLIC_URL + `assets/emotion5.png`,
-    emotion_descript: '최악이야',
-  },
-]
-
-const getStringDate = (date) => {
-  let year = date.getFullYear()
-  let month = date.getMonth() + 1
-  let day = date.getDate()
-
-  if (month < 10) {
-    month = `0${month}`
-  }
-
-  if (day < 10) {
-    day = `0${day}`
-  }
-
-  return `${year}-${month}-${day}`
-}
-
-const DiaryEditor = () => {
+//isEdit, originData는 Edit 컴포넌트에서 보낸 props.
+const DiaryEditor = ({ isEdit, originData }) => {
   const navigate = useNavigate()
 
   const contentRef = useRef()
 
   const [date, setDate] = useState(getStringDate(new Date()))
+
+  //emotionList의 emotion_id: 3을 초기값으로 준다.
   const [emotion, setEmotion] = useState(3)
   const [content, setContent] = useState()
 
-  const { onCreate } = useContext(DiaryDispatchContext)
+  const { onCreate, onEdit } = useContext(DiaryDispatchContext)
 
   const pagebackHandler = () => {
     navigate(-1)
@@ -78,16 +39,36 @@ const DiaryEditor = () => {
   const submitHandler = () => {
     if (!content) {
       contentRef.current.focus()
-    } else {
-      onCreate(date, content, emotion)
-      navigate('/', { replace: true })
+      return
     }
+
+    if (window.confirm(isEdit ? '수정된 일기를 저장할까요?' : '일기를 저장할까요?')) {
+      if (!isEdit) {
+        // isEdit이 아니면 onCreate()을 수행한다.
+        onCreate(date, content, emotion)
+      } else {
+        // isEdit이면 onEdit()을 수행한다.
+        // useContext()로 주입된 src/App.js의 함수 onEdit의 parameter targetId는 argument originData.id로 받는다.
+        onEdit(originData.id, date, content, emotion)
+      }
+    }
+
+    navigate('/', { replace: true })
   }
+
+  //page/Editor 컴포넌트에서 넘겨받은 props처리
+  useEffect(() => {
+    if (isEdit) {
+      setDate(getStringDate(new Date(Number(originData.date))))
+      setEmotion(originData.emotion)
+      setContent(originData.content)
+    }
+  }, [isEdit, originData])
 
   return (
     <div className="DiaryEditor">
       <Header //
-        headText={'새로운 일기'}
+        headText={isEdit ? '일기 수정하기' : '새로운 일기'}
         leftChild={<Button text={'< 뒤로가기'} onClick={pagebackHandler} />}
       />
       <div>

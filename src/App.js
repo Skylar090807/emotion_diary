@@ -39,47 +39,13 @@ export const DiaryStateContext = createContext()
 
 export const DiaryDispatchContext = createContext()
 
-const dummyData = [
-  //date = 4월 1일 기준
-  {
-    id: 1,
-    emotion: 1,
-    content: 'Emotion Diary 01',
-    date: 1648799995447,
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: 'Emotion Diary 02',
-    date: 1648799995448,
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: 'Emotion Diary 03',
-    date: 1648799995449,
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: 'Emotion Diary 04',
-    date: 1648799995450,
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: 'Emotion Diary 05',
-    date: 1648799995451,
-  },
-]
-
 function App() {
   console.log(new Date().getTime())
-  const [data, dispatch] = useReducer(reducer, dummyData)
+  const [data, dispatch] = useReducer(reducer, [])
 
-  const dataId = useRef(0)
+  const dataId = useRef(6)
 
-  //useReducer dispatch함수 구현
+  //useReducer dispatch 함수 구현
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: 'CREATE',
