@@ -6,6 +6,7 @@ import EmotionItem from './EmotionItem'
 import Header from './Header'
 import { getStringDate } from '../util/date'
 import { emotionList } from '../util/emotionList'
+import { useCallback } from 'react'
 
 const env = process.env
 env.PUBLIC_URL = env.PUBLIC_URL || ''
@@ -20,7 +21,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   //emotionList의 emotion_id: 3을 초기값으로 준다.
   const [emotion, setEmotion] = useState(3)
-  const [content, setContent] = useState()
+  const [content, setContent] = useState('')
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext)
 
@@ -28,21 +29,25 @@ const DiaryEditor = ({ isEdit, originData }) => {
     navigate(-1)
   }
 
-  const emotionClickHandler = (emotion) => {
+  const emotionClickHandler = useCallback((emotion) => {
     setEmotion(emotion)
-  }
+  }, [])
 
   const onChangeHandler = (event) => {
     setContent(event.target.value)
   }
 
   const submitHandler = () => {
-    if (!content) {
+    // if (!content) {
+    //   contentRef.current.focus()
+    //   return
+    // }
+    if (content.length < 1) {
       contentRef.current.focus()
       return
     }
 
-    if (window.confirm(isEdit ? '수정된 일기를 저장할까요?' : '일기를 저장할까요?')) {
+    if (window.confirm(isEdit ? '수정된 일기를 저장할까요?' : '새로운 일기를 저장할까요?')) {
       if (!isEdit) {
         // isEdit이 아니면 onCreate()을 수행한다.
         onCreate(date, content, emotion)

@@ -7,8 +7,8 @@ import Edit from './pages/Edit'
 import Diary from './pages/Diary'
 
 //useReducer() 첫번째 인자 reducer 함수 구현
-//state는 action을 수행 이전 state 값이다.
-//action은 switch 조건문에 따라 실행 될 type.
+//state는 action을 수행 이전 state 값이다. 초기화된 빈 배열 상태.(로컬스토리지 사용 중 이므로 로컬스토리지에 남아있는 data)
+//action은 switch 조건문에 따라 실행 될 type. action엔 list와 type이 있다.
 const reducer = (state, action) => {
   let newState = []
   console.log('action', action)
@@ -17,6 +17,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'INIT': {
       return action.list
+      //action.list는 현재 다이어리 리스트가 담겨있으므로 return action.list는 현재 일기를 return하는 것.
     }
     case 'CREATE': {
       // const newItem = {
@@ -25,14 +26,20 @@ const reducer = (state, action) => {
       // newState = [newItem, ...state]
       newState = [action.list, ...state] // state.unshift(action.list)
       break
+      //reducer 함수 안에서 멤버 변수로 선언한 빈 배열 newState에 action.list를 담고, 이전 state를 복사해 담는다.
+      //따라서 현재 일기와 이전 일기를 보여주는 것이다.
     }
     case 'REMOVE': {
       newState = state.filter((it) => it.id !== action.targetId)
       break
+      //state의 이전 값을 filter해 이전 값에 있는 id와 action.targetId 현재 수행된 아이디가 다른 것만 보여준다.
+      //따라서 전달 받은 targetId와 다른 것만 보여주는 것이므로 전달 받은 targetId data는 보여주지 않는다.
     }
-    case 'Edit': {
+    case 'EDIT': {
       newState = state.map((it) => (it.id === action.list.id ? { ...action.list } : it))
       break
+      //이전 값인 state를 map으로 순회하하며 state id와 action.list.id가 같으면 현재 수행하는 action.list를 복사해 보여주고
+      //아니라면 state를 보여준다. 즉 현재 수행 중인 id의 변경 사항을 복사해 보여주므로 결과적으로는 수정 된다.
     }
     default:
       return state
